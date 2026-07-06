@@ -1,18 +1,19 @@
-/* Interacciones de la invitación */
+/* Invitación Berna & Aaron — V3 */
 "use strict";
 
 const weddingDate = new Date("2026-08-07T14:00:00-05:00");
 const intro = document.getElementById("intro");
 const invitation = document.getElementById("invitation");
-const openButton = document.getElementById("openInvitation");
+const soundHint = document.getElementById("soundHint");
 const musicToggle = document.getElementById("musicToggle");
 const musicLabel = document.getElementById("musicLabel");
-const sceneDots = document.getElementById("sceneDots");
 
 let player = null;
 let playerReady = false;
-let invitationOpened = false;
+let opened = false;
+let opening = false;
 let musicPlaying = false;
+let autoplayAttempted = false;
 
 window.onYouTubeIframeAPIReady = function () {
   player = new YT.Player("ytPlayer", {
@@ -20,7 +21,7 @@ window.onYouTubeIframeAPIReady = function () {
     width: "1",
     videoId: "NaZznqme2hg",
     playerVars: {
-      autoplay: 0,
+      autoplay: 1,
       controls: 0,
       loop: 1,
       playlist: "NaZznqme2hg",
@@ -31,17 +32,27 @@ window.onYouTubeIframeAPIReady = function () {
     events: {
       onReady: () => {
         playerReady = true;
-        if (invitationOpened) playMusic();
+        attemptAutoplay();
       },
       onStateChange: (event) => {
         musicPlaying = event.data === YT.PlayerState.PLAYING;
         updateMusicUI();
+        if (musicPlaying && soundHint) soundHint.style.opacity = "0";
       }
     }
   });
 };
 
-function playMusic() {
+function attemptAutoplay() {
+  if (!playerReady || !player || autoplayAttempted) return;
+  autoplayAttempted = true;
+  try {
+    player.setVolume(42);
+    player.playVideo();
+  } catch (_) {}
+}
+
+function startMusic() {
   if (!playerReady || !player) return;
   try {
     player.setVolume(42);
@@ -61,64 +72,70 @@ function pauseMusic() {
 }
 
 function updateMusicUI() {
-  musicToggle.classList.toggle("is-paused", !musicPlaying);
+  musicToggle.classList.toggle("paused", !musicPlaying);
   musicLabel.textContent = musicPlaying ? "Pausar" : "Música";
 }
 
-openButton.addEventListener("click", () => {
-  invitationOpened = true;
-  invitation.classList.add("is-ready");
+function openInvitation() {
+  if (opening) return;
+  opening = true;
+
+  // El primer toque inicia la música antes de que termine la apertura del sobre.
+  startMusic();
+  invitation.classList.add("ready");
   invitation.setAttribute("aria-hidden", "false");
   musicToggle.hidden = false;
-  sceneDots.hidden = false;
-  playMusic();
 
-  intro.classList.add("is-opening");
+  // Pequeña pausa para que la música comience antes del cambio de pantalla.
+  setTimeout(() => intro.classList.add("is-opening"), 260);
   setTimeout(() => {
     intro.classList.add("is-hidden");
+    opened = true;
     window.scrollTo({ top: 0, behavior: "instant" });
-  }, 1050);
+  }, 1250);
+}
+
+intro.addEventListener("pointerdown", () => startMusic(), { passive: true });
+intro.addEventListener("click", openInvitation);
+intro.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openInvitation();
+  }
 });
+
+// Cualquier primer toque en la página sirve como respaldo para iniciar el audio.
+document.addEventListener("pointerdown", startMusic, { once: true, passive: true });
 
 musicToggle.addEventListener("click", () => {
   if (!playerReady) {
     window.open("https://www.youtube.com/watch?v=NaZznqme2hg", "_blank", "noopener");
     return;
   }
-  musicPlaying ? pauseMusic() : playMusic();
+  musicPlaying ? pauseMusic() : startMusic();
 });
 
 function pad(value) {
   return String(Math.max(0, value)).padStart(2, "0");
 }
-
 function updateCountdown() {
-  const now = new Date();
-  let diff = weddingDate.getTime() - now.getTime();
+  let diff = weddingDate.getTime() - Date.now();
   if (diff < 0) diff = 0;
-
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor((diff % 86400000) / 3600000);
-  const minutes = Math.floor((diff % 3600000) / 60000);
-  const seconds = Math.floor((diff % 60000) / 1000);
-
-  document.getElementById("days").textContent = pad(days);
-  document.getElementById("hours").textContent = pad(hours);
-  document.getElementById("minutes").textContent = pad(minutes);
-  document.getElementById("seconds").textContent = pad(seconds);
+  document.getElementById("days").textContent = pad(Math.floor(diff / 86400000));
+  document.getElementById("hours").textContent = pad(Math.floor((diff % 86400000) / 3600000));
+  document.getElementById("minutes").textContent = pad(Math.floor((diff % 3600000) / 60000));
+  document.getElementById("seconds").textContent = pad(Math.floor((diff % 60000) / 1000));
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
-// Reveal effects
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add("is-visible");
+    if (entry.isIntersecting) entry.target.classList.add("visible");
   });
-}, { threshold: 0.28 });
+}, { threshold: 0.2 });
 document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-// Petals for the closing scene
 const petals = document.getElementById("petals");
 for (let i = 0; i < 24; i++) {
   const petal = document.createElement("span");
@@ -127,31 +144,9 @@ for (let i = 0; i < 24; i++) {
   petal.style.animationDuration = `${6 + Math.random() * 8}s`;
   petal.style.animationDelay = `${-Math.random() * 12}s`;
   petal.style.setProperty("--drift", `${-80 + Math.random() * 160}px`);
-  petal.style.transform = `scale(${0.55 + Math.random() * 0.9})`;
   petals.appendChild(petal);
 }
 
-// Navigation dots
-const scenes = [...document.querySelectorAll(".scene")];
-scenes.forEach((scene, index) => {
-  const dot = document.createElement("button");
-  dot.type = "button";
-  dot.setAttribute("aria-label", `Ir a la sección ${index + 1}`);
-  dot.addEventListener("click", () => scene.scrollIntoView({ behavior: "smooth", block: "start" }));
-  sceneDots.appendChild(dot);
-});
-
-const dots = [...sceneDots.querySelectorAll("button")];
-const sceneObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const index = scenes.indexOf(entry.target);
-    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
-  });
-}, { threshold: 0.55 });
-scenes.forEach(scene => sceneObserver.observe(scene));
-
-// Pause music when the tab is hidden, resume only if it was playing
 let resumeAfterVisibility = false;
 document.addEventListener("visibilitychange", () => {
   if (document.hidden && musicPlaying) {
@@ -159,6 +154,6 @@ document.addEventListener("visibilitychange", () => {
     pauseMusic();
   } else if (!document.hidden && resumeAfterVisibility) {
     resumeAfterVisibility = false;
-    playMusic();
+    startMusic();
   }
 });

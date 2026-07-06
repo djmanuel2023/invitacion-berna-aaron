@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#f4ead9">
+  <meta name="theme-color" content="#f5ecdd">
   <meta name="description" content="Invitación de boda de Berna Brigitte y Aaron Michael — 07 de agosto de 2026, Yanahuara.">
   <meta property="og:title" content="Berna & Aaron — Invitación de boda">
-  <meta property="og:description" content="Nos encantaría compartir contigo el inicio de nuestra nueva historia.">
+  <meta property="og:description" content="Acompáñanos en el inicio de nuestra nueva historia.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/portada-compartir.jpg">
+  <meta property="og:image" content="assets/portada-compartir-v3.jpg">
   <title>Berna & Aaron | 07.08.2026</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,30 +17,28 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="ambient-grain" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
-  <div id="intro" class="intro" role="dialog" aria-label="Abrir invitación">
-    <img class="intro-image" src="assets/escena-01-apertura.webp" alt="Sobre de boda elegante con sello B y A">
-    <div class="intro-shimmer" aria-hidden="true"></div>
-    <button id="openInvitation" class="hotspot hotspot-open" type="button" aria-label="Abrir invitación">
-      <span>Abrir invitación</span>
-    </button>
-    <p class="intro-hint">Toca para abrir y escuchar la música</p>
-  </div>
+  <!-- Pantalla inicial: toda la portada es sensible al toque.
+       No se coloca un segundo botón visible, por eso ya no aparece duplicado. -->
+  <section id="intro" class="intro" role="button" tabindex="0" aria-label="Abrir invitación">
+    <img src="assets/escena-01-apertura.webp" alt="Sobre de boda elegante con sello B y A">
+    <div class="intro-light" aria-hidden="true"></div>
+    <div id="soundHint" class="sound-hint">Toca la pantalla para abrir y escuchar la música</div>
+  </section>
 
   <main id="invitation" class="invitation" aria-hidden="true">
-    <section class="scene image-scene" data-scene="2">
-      <img src="assets/escena-02-presentacion.webp" alt="Presentación de Berna Brigitte y Aaron Michael">
-      <div class="soft-glow" aria-hidden="true"></div>
+    <section class="scene image-scene hero-scene">
+      <img src="assets/escena-02-presentacion.webp" alt="Berna Brigitte y Aaron Michael">
+      <div class="glow" aria-hidden="true"></div>
     </section>
 
-    <section class="scene family-scene" data-scene="familias">
-      <div class="floral-halo" aria-hidden="true"></div>
-      <div class="family-card reveal">
-        <div class="monogram-small">B <span>|</span> A</div>
+    <section class="scene paper-scene">
+      <article class="ornate-card reveal">
+        <div class="mini-monogram">B <span>|</span> A</div>
         <p class="eyebrow">Con la bendición de nuestras familias</p>
         <h2>Nuestros padres y padrinos</h2>
-        <div class="family-grid">
+        <div class="family-list">
           <div>
             <h3>Padres de la novia</h3>
             <p>Rosa Machaca Condori de Apaza</p>
@@ -51,101 +49,135 @@
             <p>Debra Burroughs</p>
             <p>Mike Burroughs</p>
           </div>
-          <div class="wide">
+          <div>
             <h3>Padrinos</h3>
             <p>Rosa Machaca Condori de Apaza</p>
             <p>Rolando Apaza Chancayauri</p>
           </div>
         </div>
-      </div>
+      </article>
     </section>
 
-    <section class="scene image-scene date-scene" data-scene="3">
+    <section class="scene image-scene date-scene">
       <img src="assets/escena-03-fecha.webp" alt="Viernes 07 de agosto de 2026">
-      <a class="action-pill calendar-pill" href="boda-berna-aaron.ics" download>
-        <span aria-hidden="true">＋</span> Agregar al calendario
+      <a class="calendar-button" href="boda-berna-aaron.ics" download aria-label="Agregar la boda al calendario">
+        Agregar al calendario
       </a>
     </section>
 
-    <section class="scene image-scene countdown-scene" data-scene="4">
-      <img src="assets/escena-04-cuenta-regresiva.webp" alt="Cuenta regresiva para la boda">
-      <div class="countdown-mask" aria-hidden="true"></div>
-      <div class="live-countdown" aria-label="Cuenta regresiva en tiempo real">
-        <p>Faltan para nuestro gran día</p>
-        <div class="days-ring">
-          <strong id="days">00</strong>
-          <span>días</span>
-        </div>
-        <div class="time-row">
-          <div><strong id="hours">00</strong><span>horas</span></div>
-          <div><strong id="minutes">00</strong><span>minutos</span></div>
-          <div><strong id="seconds">00</strong><span>segundos</span></div>
-        </div>
+    <section class="scene countdown-scene">
+      <div class="countdown-floral top-left" aria-hidden="true"></div>
+      <div class="countdown-floral bottom-right" aria-hidden="true"></div>
+      <p class="eyebrow">Faltan para nuestro gran día</p>
+      <div class="days-circle">
+        <strong id="days">00</strong>
+        <span>días</span>
+      </div>
+      <div class="time-grid" aria-label="Cuenta regresiva en tiempo real">
+        <div><strong id="hours">00</strong><span>Horas</span></div>
+        <div><strong id="minutes">00</strong><span>Minutos</span></div>
+        <div><strong id="seconds">00</strong><span>Segundos</span></div>
       </div>
     </section>
 
-    <section class="scene image-scene map-scene" data-scene="5">
+    <section class="scene image-scene action-scene">
       <img src="assets/escena-05-ceremonia.webp" alt="Ceremonia religiosa, 2:00 p. m., Cta. del Ángel 415, Yanahuara">
-      <a class="hotspot hotspot-map church-map"
+      <a class="invisible-action ceremony-action"
          href="https://maps.app.goo.gl/2DfVJ7pcRXrbuDsq8"
-         target="_blank" rel="noopener" aria-label="Ver ubicación de la ceremonia en Google Maps">
-        Ver ubicación
-      </a>
+         target="_blank" rel="noopener"
+         aria-label="Ver ubicación de la ceremonia en Google Maps"></a>
     </section>
 
-    <section class="scene image-scene map-scene" data-scene="6">
+    <section class="scene image-scene action-scene">
       <img src="assets/escena-06-recepcion.webp" alt="Recepción, 4:00 p. m., Portal de Flores 136, Yanahuara">
-      <a class="hotspot hotspot-map reception-map"
+      <a class="invisible-action reception-action"
          href="https://www.google.com/maps/search/?api=1&query=Portal%20de%20Flores%20136%2C%20Yanahuara%2C%20Arequipa%2C%20Per%C3%BA"
-         target="_blank" rel="noopener" aria-label="Cómo llegar a la recepción en Google Maps">
-        Cómo llegar
-      </a>
+         target="_blank" rel="noopener"
+         aria-label="Cómo llegar a la recepción en Google Maps"></a>
     </section>
 
-    <section class="scene image-scene" data-scene="7">
+    <section class="scene image-scene">
       <img src="assets/escena-07-vestimenta.webp" alt="Código de vestimenta formal">
     </section>
 
-    <section class="scene gift-scene" data-scene="regalo">
-      <div class="gift-card reveal">
-        <div class="gold-heart" aria-hidden="true">♡</div>
-        <p class="eyebrow">El mejor regalo</p>
-        <h2>Compartir este día contigo</h2>
-        <p>Tu presencia es lo más importante. Cualquier detalle adicional será recibido con mucho cariño y queda a tu voluntad.</p>
-        <div class="gold-rule"></div>
-        <p class="signature">Berna & Aaron</p>
+    <section class="scene story-scene">
+      <header class="section-heading reveal">
+        <p class="eyebrow">Nuestra historia</p>
+        <h2>Dos caminos destinados a encontrarse</h2>
+        <p>Antes de conocernos, ya existían dos pequeñas historias que un día caminarían en la misma dirección.</p>
+      </header>
+
+      <div class="childhood-grid reveal">
+        <article class="portrait-card">
+          <div class="portrait-frame">
+            <img src="assets/fotos/berna-infancia-retrato.jpg" alt="Berna durante su infancia">
+          </div>
+          <h3>Berna</h3>
+          <p>Una sonrisa que siempre iluminó su camino.</p>
+        </article>
+
+        <article class="portrait-card">
+          <div class="portrait-frame">
+            <img src="assets/fotos/aaron-infancia-retrato.jpg" alt="Aaron de niño con sombrero negro">
+          </div>
+          <h3>Aaron</h3>
+          <p>El niño del sombrero negro que un día encontraría a su gran amor.</p>
+        </article>
+      </div>
+
+      <div class="gold-divider" aria-hidden="true"></div>
+
+      <header class="section-heading reveal">
+        <p class="eyebrow">Hoy</p>
+        <h2>Elegimos caminar juntos</h2>
+      </header>
+
+      <div class="couple-gallery">
+        <figure class="photo-card reveal">
+          <img src="assets/fotos/foto-03-pareja.jpg" alt="Berna y Aaron en las escaleras">
+          <figcaption>El comienzo de una nueva etapa</figcaption>
+        </figure>
+        <figure class="photo-card reveal">
+          <img src="assets/fotos/foto-04-pareja.jpg" alt="Berna y Aaron caminando juntos">
+          <figcaption>Siempre de la mano</figcaption>
+        </figure>
       </div>
     </section>
 
-    <section class="scene image-scene rsvp-scene" data-scene="8">
-      <img src="assets/escena-08-confirmacion.webp" alt="Confirmación de asistencia por WhatsApp">
-      <a class="hotspot hotspot-rsvp"
-         href="https://wa.me/51974554969?text=Hola%20Berna%20y%20Aaron.%20Confirmo%20con%20mucho%20gusto%20mi%20asistencia%20a%20su%20boda%20del%2007%20de%20agosto%20de%202026.%20%C2%A1Gracias%20por%20la%20invitaci%C3%B3n!"
-         target="_blank" rel="noopener" aria-label="Confirmar asistencia por WhatsApp">
-        Confirmar asistencia
-      </a>
+    <section class="scene gift-scene">
+      <article class="ornate-card gift-card reveal">
+        <div class="heart">♡</div>
+        <p class="eyebrow">El mejor regalo</p>
+        <h2>Tu presencia</h2>
+        <p>Compartir este día contigo es lo más importante. Cualquier detalle adicional será recibido con mucho cariño y queda a tu voluntad.</p>
+        <p class="signature">Berna & Aaron</p>
+      </article>
     </section>
 
-    <section class="scene image-scene closing-scene" data-scene="9">
-      <img src="assets/escena-09-cierre.webp" alt="Gracias por acompañarnos. Berna y Aaron, 07 de agosto de 2026">
+    <section class="scene image-scene action-scene rsvp-scene">
+      <img src="assets/escena-08-confirmacion.webp" alt="Confirmación de asistencia">
+      <!-- Zona transparente: solo se ve el botón diseñado dentro de la imagen -->
+      <a class="invisible-action rsvp-action"
+         href="https://wa.me/51974554969?text=Hola%20Berna%20y%20Aaron.%20Confirmo%20con%20mucho%20gusto%20mi%20asistencia%20a%20su%20boda%20del%2007%20de%20agosto%20de%202026.%20%C2%A1Gracias%20por%20la%20invitaci%C3%B3n!"
+         target="_blank" rel="noopener"
+         aria-label="Confirmar asistencia por WhatsApp"></a>
+    </section>
+
+    <section class="scene image-scene closing-scene">
+      <img src="assets/escena-09-cierre.webp" alt="Gracias por acompañarnos. Berna y Aaron">
       <div id="petals" class="petals" aria-hidden="true"></div>
       <p class="credit">Experiencia digital por <strong>LM Producciones</strong></p>
     </section>
   </main>
 
   <button id="musicToggle" class="music-toggle" type="button" aria-label="Reproducir o pausar música" hidden>
-    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="equalizer" aria-hidden="true"><i></i><i></i><i></i></span>
     <span id="musicLabel">Música</span>
   </button>
 
-  <nav id="sceneDots" class="scene-dots" aria-label="Navegación entre secciones" hidden></nav>
-
   <div id="ytPlayer" class="youtube-player" aria-hidden="true"></div>
 
-  <noscript>
-    <div class="noscript">Activa JavaScript para disfrutar de la invitación completa.</div>
-  </noscript>
-
+  <noscript><p class="noscript">Activa JavaScript para disfrutar de la invitación completa.</p></noscript>
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="app.js"></script>
 </body>
