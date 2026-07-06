@@ -1,0 +1,24 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//LM Producciones//Boda Berna y Aaron//ES
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:ceremonia-berna-aaron-20260807@lmproducciones
+DTSTAMP:20260706T200000Z
+DTSTART:20260807T190000Z
+DTEND:20260807T200000Z
+SUMMARY:Ceremonia de boda — Berna y Aaron
+LOCATION:Cta. del Ángel 415\, Yanahuara\, Arequipa\, Perú
+DESCRIPTION:Ceremonia religiosa de Berna Brigitte Apaza Machaca y Aaron Michael Burroughs.
+END:VEVENT
+BEGIN:VEVENT
+UID:recepcion-berna-aaron-20260807@lmproducciones
+DTSTAMP:20260706T200000Z
+DTSTART:20260807T210000Z
+DTEND:20260808T040000Z
+SUMMARY:Recepción de boda — Berna y Aaron
+LOCATION:Portal de Flores 136\, Yanahuara\, Arequipa\, Perú
+DESCRIPTION:Recepción de la boda de Berna y Aaron.
+END:VEVENT
+END:VCALENDAR

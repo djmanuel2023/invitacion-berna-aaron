@@ -1,0 +1,53 @@
+INVITACIÓN DIGITAL — BERNA & AARON
+=====================================
+
+Este proyecto ya está listo para publicar. No necesitas editar el código.
+
+ARCHIVOS IMPORTANTES
+- index.html: abre la invitación.
+- styles.css: diseño y animaciones.
+- app.js: música, cuenta regresiva y botones.
+- assets/: imágenes optimizadas.
+- boda-berna-aaron.ics: botón para agregar la boda al calendario.
+
+CÓMO VERLA EN TU COMPUTADORA
+1. Descomprime el archivo ZIP.
+2. Abre la carpeta Invitacion_Berna_Aaron.
+3. Haz doble clic en index.html.
+4. Para escuchar la música necesitas conexión a Internet.
+
+CÓMO PUBLICARLA GRATIS EN GITHUB PAGES
+1. Entra a GitHub y pulsa el signo + de la parte superior.
+2. Elige “New repository”.
+3. Nombre sugerido: invitacion-berna-aaron
+4. Marca “Public” y pulsa “Create repository”.
+5. Dentro del repositorio: “Add file” > “Upload files”.
+6. ARRASTRA EL CONTENIDO de esta carpeta (index.html, styles.css, app.js,
+   boda-berna-aaron.ics y la carpeta assets). No subas el ZIP.
+7. Pulsa “Commit changes”.
+8. Entra a “Settings” > “Pages”.
+9. En “Source”, elige “Deploy from a branch”.
+10. En “Branch”, elige “main” y “/(root)”. Pulsa “Save”.
+11. Espera unos minutos. GitHub mostrará el enlace público.
+
+El enlace normalmente tendrá esta forma:
+https://TU-USUARIO.github.io/invitacion-berna-aaron/
+
+DATOS INCLUIDOS
+- Berna Brigitte Apaza Machaca
+- Aaron Michael Burroughs
+- Viernes 07 de agosto de 2026
+- Ceremonia: 2:00 p. m., Cta. del Ángel 415, Yanahuara
+- Recepción: 4:00 p. m., Portal de Flores 136, Yanahuara
+- WhatsApp: +51 974 554 969
+- Música enlazada desde YouTube
+- Cuenta regresiva en tiempo real
+- Enlaces a Google Maps
+- Confirmación por WhatsApp
+- Código de vestimenta formal
+
+IMPORTANTE
+La música empieza después de tocar “Abrir invitación”, porque los celulares
+bloquean la reproducción automática sin interacción del usuario.
+
+Diseño y experiencia digital: LM Producciones
