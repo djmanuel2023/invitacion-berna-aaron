@@ -157,3 +157,18 @@ document.addEventListener("visibilitychange", () => {
     startMusic();
   }
 });
+
+
+// Pase dinámico: ?pases=1, ?pases=2, ?pases=3 o ?pases=4
+const passParams = new URLSearchParams(window.location.search);
+let guestPasses = parseInt(passParams.get("pases") || passParams.get("invitados") || "1", 10);
+if (![1, 2, 3, 4].includes(guestPasses)) guestPasses = 1;
+const guestCountEl = document.getElementById("guestCount");
+const guestLabelEl = document.getElementById("guestLabel");
+if (guestCountEl) guestCountEl.textContent = String(guestPasses);
+if (guestLabelEl) guestLabelEl.textContent = guestPasses === 1 ? "persona" : "personas";
+const rsvpLinkDynamic = document.getElementById("rsvpLink");
+if (rsvpLinkDynamic) {
+  const mensaje = `Hola Berna y Aaron. Confirmo con mucho gusto mi asistencia a su boda del 07 de agosto de 2026 para ${guestPasses} ${guestPasses === 1 ? "persona" : "personas"}. ¡Gracias por la invitación!`;
+  rsvpLinkDynamic.href = `https://wa.me/51974554969?text=${encodeURIComponent(mensaje)}`;
+}

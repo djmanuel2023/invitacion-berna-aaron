@@ -58,6 +58,20 @@
       </article>
     </section>
 
+    <section class="scene pass-scene">
+      <article class="pass-card reveal" aria-labelledby="passTitle">
+        <div class="pass-monogram">B <span>|</span> A</div>
+        <p class="eyebrow">Pase de invitación</p>
+        <h2 id="passTitle">Hemos reservado</h2>
+        <div class="pass-number-wrap">
+          <strong id="guestCount">1</strong>
+          <span id="guestLabel">persona</span>
+        </div>
+        <p class="pass-note">Este pase ha sido preparado especialmente para ti. Agradecemos respetar el número de personas indicado.</p>
+        <div class="pass-date">07 · Agosto · 2026</div>
+      </article>
+    </section>
+
     <section class="scene image-scene date-scene">
       <img src="assets/escena-03-fecha.webp" alt="Viernes 07 de agosto de 2026">
       <a class="calendar-button" href="boda-berna-aaron.ics" download aria-label="Agregar la boda al calendario">
@@ -157,7 +171,7 @@
     <section class="scene image-scene action-scene rsvp-scene">
       <img src="assets/escena-08-confirmacion.webp" alt="Confirmación de asistencia">
       <!-- Zona transparente: solo se ve el botón diseñado dentro de la imagen -->
-      <a class="invisible-action rsvp-action"
+      <a id="rsvpLink" class="invisible-action rsvp-action"
          href="https://wa.me/51974554969?text=Hola%20Berna%20y%20Aaron.%20Confirmo%20con%20mucho%20gusto%20mi%20asistencia%20a%20su%20boda%20del%2007%20de%20agosto%20de%202026.%20%C2%A1Gracias%20por%20la%20invitaci%C3%B3n!"
          target="_blank" rel="noopener"
          aria-label="Confirmar asistencia por WhatsApp"></a>
